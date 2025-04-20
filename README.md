@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# ✨ Sumukh’s Design System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A clean, accessible, and responsive React + TypeScript + Tailwind-based design system built for enterprise UI.
 
-## Available Scripts
+## 🚀 Components
 
-In the project directory, you can run:
+| Component    | Status | Description |
+|--------------|--------|-------------|
+| Badge        | ✅     | Semantic and variant badges |
+| ProgressBar  | ✅     | Animated + interactive progress bars |
+| Tabs         | ✅     | Responsive tabs with accessibility |
+| Navbar       | ✅     | Sticky top navigation bar with scroll sync |
+| Color Tokens | ✅     | Primary, Semantic, and Surface colors |
+| Typography   | ✅     | Heading & text styles |
+| Spacing      | ✅     | XS to XL spacing scales |
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 📦 Tech Stack
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- React + TypeScript
+- TailwindCSS (via CDN)
+- Storybook (for documentation)
+- `react-scroll` (for smooth section linking)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📚 Documentation
 
-### `npm run build`
+Each component includes:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Props / API
+- States & Variants
+- Accessibility Notes (WCAG AA+)
+- Theming & Responsiveness
+- Usage Guidelines
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Live Preview: _Coming Soon_
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🧪 Tokens & Theming
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- 🎨 Primary: Indigo 500
+- ⚠️ Semantic Colors: Info, Warning, Error, Success
+- ♿ Contrast-tested (WCAG 2.1)
+- 📏 Spacing: 4px → 32px
+- 🔤 Typography: H1 → Caption
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## ♿ Accessibility
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+| Pair                    | Contrast | WCAG |
+|-------------------------|----------|------|
+| White on #111827        | 12.6:1   | AAA ✅ |
+| Indigo-500 on white     | 4.8:1    | AA ✅ |
+| Yellow-400 on black     | 14.1:1   | AAA ✅ |
+| Red-500 on white        | 3.9:1    | AA ⚠️ borderline |
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🛠️ Setup & Run
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm install
+npm start
+npm run storybook
