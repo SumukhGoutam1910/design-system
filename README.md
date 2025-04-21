@@ -2,6 +2,10 @@
 
 A clean, accessible, and responsive React + TypeScript + Tailwind-based design system built for enterprise UI.
 
+## Deployed links
+
+- [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://6804c28ddb0069525481e3ba-wfshxkdvvm.chromatic.com/)
+
 ## 🚀 Components
 
 | Component    | Status | Description |
