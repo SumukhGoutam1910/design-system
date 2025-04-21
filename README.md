@@ -4,7 +4,8 @@ A clean, accessible, and responsive React + TypeScript + Tailwind-based design s
 
 ## Deployed links
 
-- [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://6804c28ddb0069525481e3ba-wfshxkdvvm.chromatic.com/)
+- Storybook link: [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://6804c28ddb0069525481e3ba-wfshxkdvvm.chromatic.com/)
+- Chromatic library link: https://www.chromatic.com/library?appId=6804c28ddb0069525481e3ba
 
 ## 🚀 Components
 
