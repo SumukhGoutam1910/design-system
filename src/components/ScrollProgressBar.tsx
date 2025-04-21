@@ -1,23 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, RefObject } from 'react';
 
-export const ScrollProgressBar: React.FC = () => {
+type ScrollProgressBarProps = {
+  containerRef?: RefObject<HTMLElement | null>;
+  color?: string;
+};
+
+export const ScrollProgressBar: React.FC<ScrollProgressBarProps> = ({ 
+  containerRef,
+  color = 'bg-primary'
+}) => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const updateScrollProgress = () => {
-    const scrollTop = window.scrollY;
-    const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled = (scrollTop / windowHeight) * 100;
+    const container = containerRef?.current || document.documentElement;
+    const scrollTop = container === document.documentElement 
+      ? window.scrollY 
+      : (container as HTMLElement).scrollTop;
+    const scrollHeight = container.scrollHeight - container.clientHeight;
+    const scrolled = (scrollTop / scrollHeight) * 100;
     setScrollProgress(scrolled);
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', updateScrollProgress);
-    return () => window.removeEventListener('scroll', updateScrollProgress);
-  }, []);
+    const scrollContainer = containerRef?.current || window;
+    scrollContainer.addEventListener('scroll', updateScrollProgress);
+    return () => scrollContainer.removeEventListener('scroll', updateScrollProgress);
+  }, [containerRef]);
 
   return (
     <div
-      className="fixed top-0 left-0 h-1 bg-primary z-[60] transition-all duration-300 ease-out"
+      className={`fixed top-0 left-0 h-1 ${color} z-[60] transition-all duration-300 ease-out`}
       style={{ width: `${scrollProgress}%` }}
     />
   );

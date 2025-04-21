@@ -1,5 +1,6 @@
+import React from 'react';
+import { Tabs } from '../components/Tabs';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tabs } from './Tabs';
 
 const meta: Meta<typeof Tabs> = {
   title: 'Components/Tabs',
@@ -8,15 +9,23 @@ const meta: Meta<typeof Tabs> = {
 };
 
 export default meta;
-
 type Story = StoryObj<typeof Tabs>;
 
-export const BasicTabs: Story = {
-  args: {
-    tabs: [
-      { label: 'Overview', content: <div>Overview content</div> },
-      { label: 'Components', content: <div>Component info</div> },
-      { label: 'About', content: <div>About you</div> },
-    ],
-  },
+const commonArgs = {
+  tabs: [
+    { label: 'Overview', content: <p>This is an overview tab.</p> },
+    { label: 'Components', content: <p>This shows your components.</p> },
+    { label: 'About You', content: <p>Hi, I'm Sumukh!</p> },
+  ],
+};
+
+export const Default: Story = {
+  args: commonArgs,
+  decorators: [
+    (Story) => (
+      <div className="bg-gray-900 p-8 rounded-lg">
+        <Story />
+      </div>
+    ),
+  ],
 };

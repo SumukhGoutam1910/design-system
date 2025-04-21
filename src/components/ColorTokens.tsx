@@ -7,13 +7,13 @@ type TokenProps = {
 };
 
 const ColorToken: React.FC<TokenProps> = ({ name, description, className }) => (
-  <div className="flex items-center justify-between gap-4 bg-white/5 p-4 rounded-lg shadow-md">
+  <div className="flex items-center justify-between gap-4 bg-white dark:bg-white/5 p-4 rounded-lg shadow-md">
     <div className={`w-12 h-12 rounded ${className}`} />
     <div className="flex-1">
-      <p className="text-white font-semibold">{name}</p>
-      <p className="text-white/60 text-sm">{description}</p>
+      <p className="text-gray-900 dark:text-white font-semibold">{name}</p>
+      <p className="text-gray-600 dark:text-white/60 text-sm">{description}</p>
     </div>
-    <code className="text-xs text-white/40">{className}</code>
+    <code className="text-xs text-gray-500 dark:text-white/40">{className}</code>
   </div>
 );
 
@@ -33,7 +33,9 @@ export const ColorTokens: React.FC = () => {
 
   return (
     <section id="colors" className="max-w-3xl mx-auto space-y-6 mt-20">
-      <h1 className="text-3xl font-bold text-center mb-6">🎨 Color Tokens</h1>
+      <h1 className="text-3xl font-bold text-center mb-6 text-gray-900 dark:text-white">
+        🎨 Color Tokens
+      </h1>
       {tokens.map((token) => (
         <ColorToken key={token.name} {...token} />
       ))}

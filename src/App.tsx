@@ -91,8 +91,16 @@ function App() {
       label: 'About You',
       content: (
         <div>
-          <h2 className="text-xl font-bold mb-2">Sumukh</h2>
-          <p><i>"If you think good design is expensive, you should look at the cost of bad design"</i> is what drives me as a FullStack Web Developer.</p>
+          <h2 className="text-xl font-bold mb-2">Sumukh Goutam : Web Developer</h2>
+          <ul className="list-disc pl-6 space-y-2">
+            <p><i><span className="font-semibold text-secondary">"If you think good design is expensive, you should look at the cost of bad design"</span></i> is what drives me as a FullStack Web Developer.</p>
+            <li>👨‍💻 Passionate about creating user-friendly and visually appealing web applications.</li>
+            <li>🌐 Experienced in building responsive and accessible UI components.</li>
+            <li>🎨 Strong understanding of design principles and best practices.</li>
+            <li>📈 Committed to continuous learning and improvement in web development.</li>
+            <li>📞 Available for freelance projects and collaborations.</li>
+            <p>The urge to standout in the market? ➡️ Contact me on <i>+91 9860934944</i> or <i>sumukhgoutam0804@gmail.com</i></p>
+          </ul>
         </div>
       ),
     },

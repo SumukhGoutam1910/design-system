@@ -1,10 +1,11 @@
-import React from 'react';
-import { useRipple } from '../hooks/useRipple';
+import React, { useRef, useEffect } from 'react';
 
 type BadgeProps = {
   label: string;
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info';
   size?: 'sm' | 'md' | 'lg';
+  onClick?: () => void;
+  playSound?: boolean;
 };
 
 const colorGlowClasses = {
@@ -32,25 +33,87 @@ const colorGradientClasses = {
 };
 
 const rippleColors = {
-  primary: 'rgba(99,102,241,0.4)',     // indigo
-  secondary: 'rgba(234,179,8,0.4)',    // amber
-  success: 'rgba(16,185,129,0.4)',     // emerald
-  error: 'rgba(244,63,94,0.4)',        // rose
-  warning: 'rgba(249,115,22,0.4)',     // orange
-  info: 'rgba(14,165,233,0.4)',        // sky
+  primary: 'rgba(99,102,241,0.4)',
+  secondary: 'rgba(234,179,8,0.4)',
+  success: 'rgba(16,185,129,0.4)',
+  error: 'rgba(244,63,94,0.4)',
+  warning: 'rgba(249,115,22,0.4)',
+  info: 'rgba(14,165,233,0.4)',
 };
 
 export const Badge: React.FC<BadgeProps> = ({
   label,
   color = 'primary',
   size = 'md',
+  onClick,
+  playSound = true,
 }) => {
-  const { rippleRef, createRipple } = useRipple(rippleColors[color]);
+  const badgeRef = useRef<HTMLSpanElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Add ripple animation style to document once on component mount
+  useEffect(() => {
+    const styleEl = document.createElement('style');
+    styleEl.innerHTML = `
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(styleEl);
+    
+    // Create audio element for click sound
+    audioRef.current = new Audio('/sounds/click.mp3');
+    audioRef.current.preload = 'auto';
+    
+    return () => {
+      document.head.removeChild(styleEl);
+    };
+  }, []);
+
+  const handleClick = (e: React.MouseEvent<HTMLSpanElement>) => {
+    if (onClick) onClick();
+    
+    // Play click sound if enabled
+    if (playSound && audioRef.current) {
+      // Reset audio to start position to allow rapid clicks
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().catch(err => {
+        console.warn('Audio playback failed:', err);
+      });
+    }
+    
+    // Create ripple effect
+    const ripple = document.createElement('span');
+    const rect = badgeRef.current?.getBoundingClientRect();
+    const size = Math.max(rect?.width || 0, rect?.height || 0);
+    const x = e.clientX - (rect?.left || 0) - size / 2;
+    const y = e.clientY - (rect?.top || 0) - size / 2;
+
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.style.backgroundColor = rippleColors[color];
+    ripple.style.position = 'absolute';
+    ripple.style.borderRadius = '50%';
+    ripple.style.transform = 'scale(0)';
+    ripple.style.opacity = '0.4';
+    ripple.style.animation = 'ripple 600ms linear';
+    ripple.style.pointerEvents = 'none';
+
+    badgeRef.current?.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  };
 
   return (
     <span
-      onClick={createRipple}
-      ref={rippleRef}
+      ref={badgeRef}
+      onClick={handleClick}
       className={`
         relative overflow-hidden
         inline-flex items-center justify-center
